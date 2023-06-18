@@ -1,0 +1,1209 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Interactive Masonry Image Gallery with Smooth Animations - wannabedev.io</title>
+		<meta name="description" content="Dynamic demonstration of a masonry image gallery that utilizes the Masonry JavaScript grid layout library, along with the smooth animation capabilities of GSAP and the interactive scrolling effects of ScrollMagic." />
+		<meta name="keywords" content="masonry, image gallery, Masonry, JavaScript, grid, layout, animation, GSAP, scrolling, effects, ScrollMagic" />
+		<meta name="author" content="Mirza Hodzic - wannabedev.io" />
+		<link rel="shortcut icon" href="favicon.ico">
+    <link rel="stylesheet" type="text/css" href="assets/css/demo.css" />
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-SJR1BPWFF0"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-SJR1BPWFF0', {
+        page_path: window.location.pathname,
+      });
+    </script>
+  </head>
+  <body>
+    
+    <!-- wannabedev:loader START -->
+    <div class="loader">
+      <div class="lds-ripple">
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+    <!-- wannabedev:loader END -->
+
+    <!-- wannabedev:header START -->
+    <header>
+      <div class="header-inner">
+        <div class="logo">
+          <a href="https://wannabedev.io/"></a>
+        </div>
+        <nav class="navigation">
+          <li><a href="https://wannabedev.io"><span>Home</span></a></li>
+          <li><a href="https://wannabedev.io/tutorials/interactive-masonry-image-gallery-with-smooth-animations"><span>Back to Article</span></a></li>
+        </nav>
+      </div>
+    </header>
+    <!-- wannabedev:header END -->
+
+    <!-- wannabedev:demo:fixed-content START -->
+    <section class="content-holder">
+      <div class="content">
+        <h1>Through<br>a Rainy <span><svg id="Capa_1" data-name="Capa 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 442.45 511.84"><defs><style>.cls-1{fill:#fff;}.cls-2{fill:#f2f2f2;}.cls-3{fill:#006073;}</style></defs><title>protection</title><path class="cls-1" d="M241.63,275.16V464.71a18.55,18.55,0,0,1-37.1,0V453.24a14.29,14.29,0,1,0-28.57,0v11.47a47.12,47.12,0,1,0,94.23,0V275.16Z" transform="translate(-34.69)"/><path class="cls-1" d="M270.19,124.32V96.26a14.28,14.28,0,1,0-28.56,0v28.06Z" transform="translate(-34.69)"/><path class="cls-1" d="M113.58,300.24c29.12,0,42.88,5.51,60.68,19.9,19.18-14.4,48.68-23.61,81.66-23.61s62.47,9.21,81.64,23.61c17.79-14.4,31.54-19.9,60.67-19.9,34.3,0,64,11.42,78.92,28.11C468,200.09,372.57,99.13,255.92,99.13S43.81,200.09,34.69,328.35c14.87-16.68,44.6-28.11,78.89-28.11" transform="translate(-34.69)"/><path class="cls-2" d="M255.92,99.14h0c-36.79,0-71,89.28-81.33,220.78,19.17-14.26,48.54-23.38,81.33-23.38s62.14,9.12,81.31,23.38c-10.38-131.5-44.52-220.78-81.31-220.78" transform="translate(-34.69)"/><path class="cls-3" d="M114.21,135.51a26.45,26.45,0,1,1-52.9,0c0-14.6,26.45-48.84,26.45-48.84s26.45,34.24,26.45,48.84" transform="translate(-34.69)"/><path class="cls-1" d="M87.75,153.54a18,18,0,0,1-18-18,2.82,2.82,0,1,1,5.64,0A12.39,12.39,0,0,0,87.76,147.9a2.82,2.82,0,1,1,0,5.64" transform="translate(-34.69)"/><path class="cls-3" d="M282.37,48.85a26.47,26.47,0,1,1-52.93,0C229.44,34.24,255.92,0,255.92,0s26.45,34.24,26.45,48.85" transform="translate(-34.69)"/><path class="cls-1" d="M255.92,66.88a18.06,18.06,0,0,1-18-18,2.83,2.83,0,0,1,5.66,0,12.39,12.39,0,0,0,12.39,12.4,2.82,2.82,0,1,1,0,5.63" transform="translate(-34.69)"/><path class="cls-3" d="M437.32,93.16a26.47,26.47,0,1,1-52.93,0c0-14.61,26.45-48.85,26.45-48.85s26.48,34.24,26.48,48.85" transform="translate(-34.69)"/><path class="cls-1" d="M410.83,111.2a18,18,0,0,1-18-18,2.82,2.82,0,0,1,5.63,0,12.4,12.4,0,0,0,12.39,12.4,2.82,2.82,0,1,1,0,5.63" transform="translate(-34.69)"/><path class="cls-3" d="M176,237.43a26.45,26.45,0,1,1-52.9,0c0-14.61,26.45-48.85,26.45-48.85S176,222.8,176,237.43" transform="translate(-34.69)"/><path class="cls-1" d="M149.5,255.46a18.06,18.06,0,0,1-18-18,2.83,2.83,0,0,1,5.65,0,12.39,12.39,0,0,0,12.4,12.39,2.82,2.82,0,1,1,0,5.64" transform="translate(-34.69)"/><path class="cls-3" d="M374,202.88a26.47,26.47,0,0,1-52.93,0C321,188.27,347.5,154,347.5,154S374,188.27,374,202.88" transform="translate(-34.69)"/><path class="cls-1" d="M347.5,220.92a18.05,18.05,0,0,1-18-18,2.83,2.83,0,0,1,5.65,0,12.4,12.4,0,0,0,12.4,12.4,2.82,2.82,0,1,1,0,5.63" transform="translate(-34.69)"/></svg></span><br>Window</h1>
+        <p>Access 1,000,000 free, high-resolution photos you can’t find anywhere else</p>
+        <form action="#">
+          <div class="label">
+            <input class="input" autocomplete="off" placeholder="Your e-mail to join" type="email">
+            <input class="submit" type="submit" value="➤">
+          </div>
+        </form>
+      </div>
+    </section>
+    <!-- wannabedev:demo:fixed-content END -->
+
+    <!-- wannabedev:demo:grid START -->
+    <section class="grid-holder">
+      <div class="grid masonry">
+        
+        <div class="close-detail-view"></div>
+        
+        <!-- wannabedev:demo:grid:item START -->
+        <div class="masonry__item small">
+          <figure>
+            <figcaption>#1</figcaption>
+            <div class="content">
+              <h2>Rainy Window</h2>
+            </div>
+            <div class="background" style="background-image: url(https://images.unsplash.com/photo-1515725598959-ed796fc88b08?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1160&q=80);"></div>
+            <div class="detail">
+              <span class="icon"></span>
+              <span class="circles">
+                <div class="circle circle1"><span>FREE</span></div>
+                <div class="circle circle2"><span>➤</span></div>
+              </span>
+            </div>
+          </figure>
+        </div>
+        <!-- wannabedev:demo:grid:item END -->
+
+        <div class="masonry__item middle">
+          <figure>
+            <figcaption>#2</figcaption>
+            <div class="content">
+              <h2>Rainy Window</h2>
+            </div>
+            <div class="background" style="background-image: url(https://images.unsplash.com/photo-1521061887553-5e20fcd813b8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80);"></div>
+            <div class="detail">
+              <span class="icon"></span>
+              <span class="circles">
+                <div class="circle circle1"><span>€9.99</span></div>
+                <div class="circle circle2"><span>➤</span></div>
+              </span>
+            </div>
+          </figure>
+        </div>
+
+        <div class="masonry__item big">
+          <figure>
+            <figcaption>#3</figcaption>
+            <div class="content">
+              <h2>Rainy Window</h2>
+            </div>
+            <div class="background" style="background-image: url(https://images.unsplash.com/photo-1543347969-806b4c8d7da1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1742&q=80);"></div>
+            <div class="detail">
+              <span class="icon"></span>
+              <span class="circles">
+                <div class="circle circle1"><span>FREE</span></div>
+                <div class="circle circle2"><span>➤</span></div>
+              </span>
+            </div>
+          </figure>
+        </div>
+
+        <div class="masonry__item middle">
+          <figure>
+            <figcaption>#4</figcaption>
+            <div class="content">
+              <h2>Rainy Window</h2>
+            </div>
+            <div class="background" style="background-image: url();"></div>
+            <div class="detail">
+              <span class="icon"></span>
+              <span class="circles">
+                <div class="circle circle1"><span>FREE</span></div>
+                <div class="circle circle2"><span>➤</span></div>
+              </span>
+            </div>
+          </figure>
+        </div>
+
+        <div class="masonry__item big">
+          <figure>
+            <figcaption>#5</figcaption>
+            <div class="content">
+              <h2>Rainy Window</h2>
+            </div>
+            <div class="background" style="background-image: url(https://images.unsplash.com/photo-1567688993206-43c34131b21f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80);"></div>
+            <div class="detail">
+              <span class="icon"></span>
+              <span class="circles">
+                <div class="circle circle1"><span>FREE</span></div>
+                <div class="circle circle2"><span>➤</span></div>
+              </span>
+            </div>
+          </figure>
+        </div>
+
+        <div class="masonry__item big">
+          <figure>
+            <figcaption>#6</figcaption>
+            <div class="content">
+              <h2>Rainy Window</h2>
+            </div>
+            <div class="background" style="background-image: url(https://images.unsplash.com/photo-1548232979-6c557ee14752?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1742&q=80);"></div>
+            <div class="detail">
+              <span class="icon"></span>
+              <span class="circles">
+                <div class="circle circle1"><span>FREE</span></div>
+                <div class="circle circle2"><span>➤</span></div>
+              </span>
+            </div>
+          </figure>
+        </div>
+
+        <div class="masonry__item middle">
+          <figure>
+            <figcaption>#7</figcaption>
+            <div class="content">
+              <h2>Rainy Window</h2>
+            </div>
+            <div class="background" style="background-image: url(https://images.unsplash.com/photo-1520187135890-e8023d253f5c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80);"></div>
+            <div class="detail">
+              <span class="icon"></span>
+              <span class="circles">
+                <div class="circle circle1"><span>FREE</span></div>
+                <div class="circle circle2"><span>➤</span></div>
+              </span>
+            </div>
+          </figure>
+        </div>
+
+        <div class="masonry__item big">
+          <figure>
+            <figcaption>#8</figcaption>
+            <div class="content">
+              <h2>Rainy Window</h2>
+            </div>
+            <div class="background" style="background-image: url(https://images.unsplash.com/photo-1600276871076-49d461d70795?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1744&q=80);"></div>
+            <div class="detail">
+              <span class="icon"></span>
+              <span class="circles">
+                <div class="circle circle1"><span>FREE</span></div>
+                <div class="circle circle2"><span>➤</span></div>
+              </span>
+            </div>
+          </figure>
+        </div>
+
+        <div class="masonry__item small">
+          <figure>
+            <figcaption>#9</figcaption>
+            <div class="content">
+              <h2>Rainy Window</h2>
+            </div>
+            <div class="background" style="background-image: url(https://images.unsplash.com/photo-1499184949561-704bad5f6cd6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80);"></div>
+            <div class="detail">
+              <span class="icon"></span>
+              <span class="circles">
+                <div class="circle circle1"><span>FREE</span></div>
+                <div class="circle circle2"><span>➤</span></div>
+              </span>
+            </div>
+          </figure>
+        </div>
+
+        <div class="masonry__item big">
+          <figure>
+            <figcaption>#10</figcaption>
+            <div class="content">
+              <h2>Rainy Window</h2>
+            </div>
+            <div class="background" style="background-image: url(https://images.unsplash.com/photo-1515725598959-ed796fc88b08?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1160&q=80);"></div>
+            <div class="detail">
+              <span class="icon"></span>
+              <span class="circles">
+              <div class="circle circle1"><span>FREE</span></div>
+              <div class="circle circle2"><span>➤</span></div>
+              </span>
+            </div>
+          </figure>
+        </div>
+
+        <div class="masonry__item middle">
+          <figure>
+            <figcaption>#11</figcaption>
+            <div class="content">
+              <h2>Rainy Window</h2>
+            </div>
+            <div class="background" style="background-image: url(https://images.unsplash.com/photo-1521061887553-5e20fcd813b8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80);"></div>
+          <div class="detail">
+    <span class="icon"></span>
+    <span class="circles">
+    <div class="circle circle1"><span>FREE</span></div>
+    <div class="circle circle2"><span>➤</span></div>
+    </span>
+    </div>
+    </figure>
+        </div>
+        
+        <div class="masonry__item big">
+          <figure>
+            <figcaption>#12</figcaption>
+            <div class="content">
+              <h2>Rainy Window</h2>
+            </div>
+            <div class="background" style="background-image: url(https://images.unsplash.com/photo-1543347969-806b4c8d7da1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1742&q=80);"></div>
+          <div class="detail">
+    <span class="icon"></span>
+    <span class="circles">
+    <div class="circle circle1"><span>FREE</span></div>
+    <div class="circle circle2"><span>➤</span></div>
+    </span>
+    </div>
+    </figure>
+        </div>
+
+        <div class="masonry__item middle">
+          <figure>
+            <figcaption>#13</figcaption>
+            <div class="content">
+              <h2>Rainy Window</h2>
+            </div>
+            <div class="background" style="background-image: url(https://images.unsplash.com/photo-1567688993206-43c34131b21f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80);"></div>
+          <div class="detail">
+    <span class="icon"></span>
+    <span class="circles">
+    <div class="circle circle1"><span>FREE</span></div>
+    <div class="circle circle2"><span>➤</span></div>
+    </span>
+    </div>
+    </figure>
+        </div>
+
+        <div class="masonry__item small">
+          <figure>
+            <figcaption>#14</figcaption>
+            <div class="content">
+              <h2>Rainy Window</h2>
+            </div>
+            <div class="background" style="background-image: url(https://images.unsplash.com/photo-1548232979-6c557ee14752?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1742&q=80);"></div>
+          <div class="detail">
+    <span class="icon"></span>
+    <span class="circles">
+    <div class="circle circle1"><span>FREE</span></div>
+    <div class="circle circle2"><span>➤</span></div>
+    </span>
+    </div>
+    </figure>
+        </div>
+
+        <div class="masonry__item big">
+          <figure>
+            <figcaption>#15</figcaption>
+            <div class="content">
+              <h2>Rainy Window</h2>
+            </div>
+            <div class="background" style="background-image: url(https://images.unsplash.com/photo-1520187135890-e8023d253f5c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80);"></div>
+          <div class="detail">
+    <span class="icon"></span>
+    <span class="circles">
+    <div class="circle circle1"><span>FREE</span></div>
+    <div class="circle circle2"><span>➤</span></div>
+    </span>
+    </div>
+    </figure>
+        </div>
+
+        <div class="masonry__item small">
+          <figure>
+            <figcaption>#16</figcaption>
+            <div class="content">
+              <h2>Rainy Window</h2>
+            </div>
+            <div class="background" style="background-image: url(https://images.unsplash.com/photo-1600276871076-49d461d70795?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1744&q=80);"></div>
+          <div class="detail">
+    <span class="icon"></span>
+    <span class="circles">
+    <div class="circle circle1"><span>FREE</span></div>
+    <div class="circle circle2"><span>➤</span></div>
+    </span>
+    </div>
+    </figure>
+        </div>
+
+        <div class="masonry__item small">
+          <figure>
+            <figcaption>#17</figcaption>
+            <div class="content">
+              <h2>Rainy Window</h2>
+            </div>
+            <div class="background" style="background-image: url(https://images.unsplash.com/photo-1499184949561-704bad5f6cd6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80);"></div>
+          <div class="detail">
+    <span class="icon"></span>
+    <span class="circles">
+    <div class="circle circle1"><span>FREE</span></div>
+    <div class="circle circle2"><span>➤</span></div>
+    </span>
+    </div>
+    </figure>
+        </div>
+
+        <div class="masonry__item middle">
+          <figure>
+            <figcaption>#18</figcaption>
+            <div class="content">
+              <h2>Rainy Window</h2>
+            </div>
+            <div class="background" style="background-image: url(https://images.unsplash.com/photo-1515725598959-ed796fc88b08?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1160&q=80);"></div>
+          <div class="detail">
+    <span class="icon"></span>
+    <span class="circles">
+    <div class="circle circle1"><span>FREE</span></div>
+    <div class="circle circle2"><span>➤</span></div>
+    </span>
+    </div>
+    </figure>
+        </div>
+
+        <div class="masonry__item big">
+          <figure>
+            <figcaption>#19</figcaption>
+            <div class="content">
+              <h2>Rainy Window</h2>
+            </div>
+            <div class="background" style="background-image: url(https://images.unsplash.com/photo-1521061887553-5e20fcd813b8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80);"></div>
+          <div class="detail">
+    <span class="icon"></span>
+    <span class="circles">
+    <div class="circle circle1"><span>FREE</span></div>
+    <div class="circle circle2"><span>➤</span></div>
+    </span>
+    </div>
+    </figure>
+        </div>
+
+        <div class="masonry__item middle">
+          <figure>
+            <figcaption>#20</figcaption>
+            <div class="content">
+              <h2>Rainy Window</h2>
+            </div>
+            <div class="background" style="background-image: url(https://images.unsplash.com/photo-1543347969-806b4c8d7da1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1742&q=80);"></div>
+          <div class="detail">
+    <span class="icon"></span>
+    <span class="circles">
+    <div class="circle circle1"><span>FREE</span></div>
+    <div class="circle circle2"><span>➤</span></div>
+    </span>
+    </div>
+    </figure>
+        </div>
+
+        <div class="masonry__item big">
+          <figure>
+            <figcaption>#21</figcaption>
+            <div class="content">
+              <h2>Rainy Window</h2>
+            </div>
+            <div class="background" style="background-image: url(https://images.unsplash.com/photo-1567688993206-43c34131b21f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80);"></div>
+          <div class="detail">
+    <span class="icon"></span>
+    <span class="circles">
+    <div class="circle circle1"><span>FREE</span></div>
+    <div class="circle circle2"><span>➤</span></div>
+    </span>
+    </div>
+    </figure>
+        </div>
+
+        <div class="masonry__item big">
+          <figure>
+            <figcaption>#22</figcaption>
+            <div class="content">
+              <h2>Rainy Window</h2>
+            </div>
+            <div class="background" style="background-image: url(https://images.unsplash.com/photo-1548232979-6c557ee14752?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1742&q=80);"></div>
+          <div class="detail">
+    <span class="icon"></span>
+    <span class="circles">
+    <div class="circle circle1"><span>FREE</span></div>
+    <div class="circle circle2"><span>➤</span></div>
+    </span>
+    </div>
+    </figure>
+        </div>
+
+        <div class="masonry__item middle">
+          <figure>
+            <figcaption>#23</figcaption>
+            <div class="content">
+              <h2>Rainy Window</h2>
+            </div>
+            <div class="background" style="background-image: url(https://images.unsplash.com/photo-1520187135890-e8023d253f5c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80);"></div>
+          <div class="detail">
+    <span class="icon"></span>
+    <span class="circles">
+    <div class="circle circle1"><span>FREE</span></div>
+    <div class="circle circle2"><span>➤</span></div>
+    </span>
+    </div>
+    </figure>
+        </div>
+
+        <div class="masonry__item big">
+          <figure>
+            <figcaption>#24</figcaption>
+            <div class="content">
+              <h2>Rainy Window</h2>
+            </div>
+            <div class="background" style="background-image: url(https://images.unsplash.com/photo-1600276871076-49d461d70795?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1744&q=80);"></div>
+          <div class="detail">
+    <span class="icon"></span>
+    <span class="circles">
+    <div class="circle circle1"><span>FREE</span></div>
+    <div class="circle circle2"><span>➤</span></div>
+    </span>
+    </div>
+    </figure>
+        </div>
+
+        <div class="masonry__item small">
+          <figure>
+            <figcaption>#25</figcaption>
+            <div class="content">
+              <h2>Rainy Window</h2>
+            </div>
+            <div class="background" style="background-image: url(https://images.unsplash.com/photo-1499184949561-704bad5f6cd6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80);"></div>
+          <div class="detail">
+    <span class="icon"></span>
+    <span class="circles">
+    <div class="circle circle1"><span>FREE</span></div>
+    <div class="circle circle2"><span>➤</span></div>
+    </span>
+    </div>
+    </figure>
+        </div>
+
+        <div class="masonry__item big">
+          <figure>
+            <figcaption>#26</figcaption>
+            <div class="content">
+              <h2>Rainy Window</h2>
+            </div>
+            <div class="background" style="background-image: url(https://images.unsplash.com/photo-1515725598959-ed796fc88b08?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1160&q=80);"></div>
+          <div class="detail">
+    <span class="icon"></span>
+    <span class="circles">
+    <div class="circle circle1"><span>FREE</span></div>
+    <div class="circle circle2"><span>➤</span></div>
+    </span>
+    </div>
+    </figure>
+        </div>
+
+        <div class="masonry__item middle">
+          <figure>
+            <figcaption>#27</figcaption>
+            <div class="content">
+              <h2>Rainy Window</h2>
+            </div>
+            <div class="background" style="background-image: url(https://images.unsplash.com/photo-1521061887553-5e20fcd813b8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80);"></div>
+          <div class="detail">
+    <span class="icon"></span>
+    <span class="circles">
+    <div class="circle circle1"><span>FREE</span></div>
+    <div class="circle circle2"><span>➤</span></div>
+    </span>
+    </div>
+    </figure>
+        </div>
+        
+        <div class="masonry__item big">
+          <figure>
+            <figcaption>#28</figcaption>
+            <div class="content">
+              <h2>Rainy Window</h2>
+            </div>
+            <div class="background" style="background-image: url(https://images.unsplash.com/photo-1543347969-806b4c8d7da1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1742&q=80);"></div>
+          <div class="detail">
+    <span class="icon"></span>
+    <span class="circles">
+    <div class="circle circle1"><span>FREE</span></div>
+    <div class="circle circle2"><span>➤</span></div>
+    </span>
+    </div>
+    </figure>
+        </div>
+
+        <div class="masonry__item middle">
+          <figure>
+            <figcaption>#29</figcaption>
+            <div class="content">
+              <h2>Rainy Window</h2>
+            </div>
+            <div class="background" style="background-image: url(https://images.unsplash.com/photo-1567688993206-43c34131b21f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80);"></div>
+          <div class="detail">
+    <span class="icon"></span>
+    <span class="circles">
+    <div class="circle circle1"><span>FREE</span></div>
+    <div class="circle circle2"><span>➤</span></div>
+    </span>
+    </div>
+    </figure>
+        </div>
+
+        <div class="masonry__item small">
+          <figure>
+            <figcaption>#30</figcaption>
+            <div class="content">
+              <h2>Rainy Window</h2>
+            </div>
+            <div class="background" style="background-image: url(https://images.unsplash.com/photo-1548232979-6c557ee14752?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1742&q=80);"></div>
+          <div class="detail">
+    <span class="icon"></span>
+    <span class="circles">
+    <div class="circle circle1"><span>FREE</span></div>
+    <div class="circle circle2"><span>➤</span></div>
+    </span>
+    </div>
+    </figure>
+        </div>
+
+        <div class="masonry__item big">
+          <figure>
+            <figcaption>#31</figcaption>
+            <div class="content">
+              <h2>Rainy Window</h2>
+            </div>
+            <div class="background" style="background-image: url(https://images.unsplash.com/photo-1520187135890-e8023d253f5c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80);"></div>
+          <div class="detail">
+    <span class="icon"></span>
+    <span class="circles">
+    <div class="circle circle1"><span>FREE</span></div>
+    <div class="circle circle2"><span>➤</span></div>
+    </span>
+    </div>
+    </figure>
+        </div>
+
+        <div class="masonry__item small">
+          <figure>
+            <figcaption>#32</figcaption>
+            <div class="content">
+              <h2>Rainy Window</h2>
+            </div>
+            <div class="background" style="background-image: url(https://images.unsplash.com/photo-1600276871076-49d461d70795?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1744&q=80);"></div>
+          <div class="detail">
+    <span class="icon"></span>
+    <span class="circles">
+    <div class="circle circle1"><span>FREE</span></div>
+    <div class="circle circle2"><span>➤</span></div>
+    </span>
+    </div>
+    </figure>
+        </div>
+        
+        <div class="masonry__item small">
+          <figure>
+            <figcaption>#33</figcaption>
+            <div class="content">
+              <h2>Rainy Window</h2>
+            </div>
+            <div class="background" style="background-image: url(https://images.unsplash.com/photo-1499184949561-704bad5f6cd6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80);"></div>
+          <div class="detail">
+    <span class="icon"></span>
+    <span class="circles">
+    <div class="circle circle1"><span>FREE</span></div>
+    <div class="circle circle2"><span>➤</span></div>
+    </span>
+    </div>
+    </figure>
+        </div>
+
+        <div class="masonry__item middle">
+          <figure>
+            <figcaption>#34</figcaption>
+            <div class="content">
+              <h2>Rainy Window</h2>
+            </div>
+            <div class="background" style="background-image: url(https://images.unsplash.com/photo-1515725598959-ed796fc88b08?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1160&q=80);"></div>
+          <div class="detail">
+    <span class="icon"></span>
+    <span class="circles">
+    <div class="circle circle1"><span>FREE</span></div>
+    <div class="circle circle2"><span>➤</span></div>
+    </span>
+    </div>
+    </figure>
+        </div>
+
+        <div class="masonry__item big">
+          <figure>
+            <figcaption>#35</figcaption>
+            <div class="content">
+              <h2>Rainy Window</h2>
+            </div>
+            <div class="background" style="background-image: url(https://images.unsplash.com/photo-1521061887553-5e20fcd813b8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80);"></div>
+          <div class="detail">
+    <span class="icon"></span>
+    <span class="circles">
+    <div class="circle circle1"><span>FREE</span></div>
+    <div class="circle circle2"><span>➤</span></div>
+    </span>
+    </div>
+    </figure>
+        </div>
+
+        <div class="masonry__item middle">
+          <figure>
+            <figcaption>#36</figcaption>
+            <div class="content">
+              <h2>Rainy Window</h2>
+            </div>
+            <div class="background" style="background-image: url(https://images.unsplash.com/photo-1543347969-806b4c8d7da1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1742&q=80);"></div>
+          <div class="detail">
+    <span class="icon"></span>
+    <span class="circles">
+    <div class="circle circle1"><span>FREE</span></div>
+    <div class="circle circle2"><span>➤</span></div>
+    </span>
+    </div>
+    </figure>
+        </div>
+
+        <div class="masonry__item big">
+          <figure>
+            <figcaption>#37</figcaption>
+            <div class="content">
+              <h2>Rainy Window</h2>
+            </div>
+            <div class="background" style="background-image: url(https://images.unsplash.com/photo-1567688993206-43c34131b21f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80);"></div>
+          <div class="detail">
+    <span class="icon"></span>
+    <span class="circles">
+    <div class="circle circle1"><span>FREE</span></div>
+    <div class="circle circle2"><span>➤</span></div>
+    </span>
+    </div>
+    </figure>
+        </div>
+
+        <div class="masonry__item big">
+          <figure>
+            <figcaption>#38</figcaption>
+            <div class="content">
+              <h2>Rainy Window</h2>
+            </div>
+            <div class="background" style="background-image: url(https://images.unsplash.com/photo-1548232979-6c557ee14752?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1742&q=80);"></div>
+          <div class="detail">
+    <span class="icon"></span>
+    <span class="circles">
+    <div class="circle circle1"><span>FREE</span></div>
+    <div class="circle circle2"><span>➤</span></div>
+    </span>
+    </div>
+    </figure>
+        </div>
+
+        <div class="masonry__item middle">
+          <figure>
+            <figcaption>#39</figcaption>
+            <div class="content">
+              <h2>Rainy Window</h2>
+            </div>
+            <div class="background" style="background-image: url(https://images.unsplash.com/photo-1520187135890-e8023d253f5c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80);"></div>
+          <div class="detail">
+    <span class="icon"></span>
+    <span class="circles">
+    <div class="circle circle1"><span>FREE</span></div>
+    <div class="circle circle2"><span>➤</span></div>
+    </span>
+    </div>
+    </figure>
+        </div>
+
+        <div class="masonry__item big">
+          <figure>
+            <figcaption>#40</figcaption>
+            <div class="content">
+              <h2>Rainy Window</h2>
+            </div>
+            <div class="background" style="background-image: url(https://images.unsplash.com/photo-1600276871076-49d461d70795?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1744&q=80);"></div>
+          <div class="detail">
+    <span class="icon"></span>
+    <span class="circles">
+    <div class="circle circle1"><span>FREE</span></div>
+    <div class="circle circle2"><span>➤</span></div>
+    </span>
+    </div>
+    </figure>
+        </div>
+
+        <div class="masonry__item small">
+          <figure>
+            <figcaption>#41</figcaption>
+            <div class="content">
+              <h2>Rainy Window</h2>
+            </div>
+            <div class="background" style="background-image: url(https://images.unsplash.com/photo-1499184949561-704bad5f6cd6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80);"></div>
+          <div class="detail">
+    <span class="icon"></span>
+    <span class="circles">
+    <div class="circle circle1"><span>FREE</span></div>
+    <div class="circle circle2"><span>➤</span></div>
+    </span>
+    </div>
+    </figure>
+        </div>
+
+        <div class="masonry__item big">
+          <figure>
+            <figcaption>#42</figcaption>
+            <div class="content">
+              <h2>Rainy Window</h2>
+            </div>
+            <div class="background" style="background-image: url(https://images.unsplash.com/photo-1515725598959-ed796fc88b08?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1160&q=80);"></div>
+          <div class="detail">
+    <span class="icon"></span>
+    <span class="circles">
+    <div class="circle circle1"><span>FREE</span></div>
+    <div class="circle circle2"><span>➤</span></div>
+    </span>
+    </div>
+    </figure>
+        </div>
+
+        <div class="masonry__item middle">
+          <figure>
+            <figcaption>#43</figcaption>
+            <div class="content">
+              <h2>Rainy Window</h2>
+            </div>
+            <div class="background" style="background-image: url(https://images.unsplash.com/photo-1521061887553-5e20fcd813b8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80);"></div>
+          <div class="detail">
+    <span class="icon"></span>
+    <span class="circles">
+    <div class="circle circle1"><span>FREE</span></div>
+    <div class="circle circle2"><span>➤</span></div>
+    </span>
+    </div>
+    </figure>
+        </div>
+        
+        <div class="masonry__item big">
+          <figure>
+            <figcaption>#44</figcaption>
+            <div class="content">
+              <h2>Rainy Window</h2>
+            </div>
+            <div class="background" style="background-image: url(https://images.unsplash.com/photo-1543347969-806b4c8d7da1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1742&q=80);"></div>
+          <div class="detail">
+    <span class="icon"></span>
+    <span class="circles">
+    <div class="circle circle1"><span>FREE</span></div>
+    <div class="circle circle2"><span>➤</span></div>
+    </span>
+    </div>
+    </figure>
+        </div>
+
+        <div class="masonry__item middle">
+          <figure>
+            <figcaption>#45</figcaption>
+            <div class="content">
+              <h2>Rainy Window</h2>
+            </div>
+            <div class="background" style="background-image: url(https://images.unsplash.com/photo-1567688993206-43c34131b21f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80);"></div>
+          <div class="detail">
+    <span class="icon"></span>
+    <span class="circles">
+    <div class="circle circle1"><span>FREE</span></div>
+    <div class="circle circle2"><span>➤</span></div>
+    </span>
+    </div>
+    </figure>
+        </div>
+
+        <div class="masonry__item small">
+          <figure>
+            <figcaption>#46</figcaption>
+            <div class="content">
+              <h2>Rainy Window</h2>
+            </div>
+            <div class="background" style="background-image: url(https://images.unsplash.com/photo-1548232979-6c557ee14752?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1742&q=80);"></div>
+          <div class="detail">
+    <span class="icon"></span>
+    <span class="circles">
+    <div class="circle circle1"><span>FREE</span></div>
+    <div class="circle circle2"><span>➤</span></div>
+    </span>
+    </div>
+    </figure>
+        </div>
+
+        <div class="masonry__item big">
+          <figure>
+            <figcaption>#47</figcaption>
+            <div class="content">
+              <h2>Rainy Window</h2>
+            </div>
+            <div class="background" style="background-image: url(https://images.unsplash.com/photo-1520187135890-e8023d253f5c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80);"></div>
+          <div class="detail">
+    <span class="icon"></span>
+    <span class="circles">
+    <div class="circle circle1"><span>FREE</span></div>
+    <div class="circle circle2"><span>➤</span></div>
+    </span>
+    </div>
+    </figure>
+        </div>
+
+        <div class="masonry__item small">
+          <figure>
+            <figcaption>#48</figcaption>
+            <div class="content">
+              <h2>Rainy Window</h2>
+            </div>
+            <div class="background" style="background-image: url(https://images.unsplash.com/photo-1600276871076-49d461d70795?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1744&q=80);"></div>
+          <div class="detail">
+    <span class="icon"></span>
+    <span class="circles">
+    <div class="circle circle1"><span>FREE</span></div>
+    <div class="circle circle2"><span>➤</span></div>
+    </span>
+    </div>
+    </figure>
+        </div>
+        
+        <div class="masonry__item small">
+          <figure>
+            <figcaption>#49</figcaption>
+            <div class="content">
+              <h2>Rainy Window</h2>
+            </div>
+            <div class="background" style="background-image: url(https://images.unsplash.com/photo-1499184949561-704bad5f6cd6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80);"></div>
+          <div class="detail">
+    <span class="icon"></span>
+    <span class="circles">
+    <div class="circle circle1"><span>FREE</span></div>
+    <div class="circle circle2"><span>➤</span></div>
+    </span>
+    </div>
+    </figure>
+        </div>
+
+        <div class="masonry__item middle">
+          <figure>
+            <figcaption>#50</figcaption>
+            <div class="content">
+              <h2>Rainy Window</h2>
+            </div>
+            <div class="background" style="background-image: url(https://images.unsplash.com/photo-1515725598959-ed796fc88b08?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1160&q=80);"></div>
+          <div class="detail">
+    <span class="icon"></span>
+    <span class="circles">
+    <div class="circle circle1"><span>FREE</span></div>
+    <div class="circle circle2"><span>➤</span></div>
+    </span>
+    </div>
+    </figure>
+        </div>
+
+        <div class="masonry__item big">
+          <figure>
+            <figcaption>#51</figcaption>
+            <div class="content">
+              <h2>Rainy Window</h2>
+            </div>
+            <div class="background" style="background-image: url(https://images.unsplash.com/photo-1521061887553-5e20fcd813b8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80);"></div>
+          <div class="detail">
+    <span class="icon"></span>
+    <span class="circles">
+    <div class="circle circle1"><span>FREE</span></div>
+    <div class="circle circle2"><span>➤</span></div>
+    </span>
+    </div>
+    </figure>
+        </div>
+
+        <div class="masonry__item middle">
+          <figure>
+            <figcaption>#52</figcaption>
+            <div class="content">
+              <h2>Rainy Window</h2>
+            </div>
+            <div class="background" style="background-image: url(https://images.unsplash.com/photo-1543347969-806b4c8d7da1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1742&q=80);"></div>
+          <div class="detail">
+    <span class="icon"></span>
+    <span class="circles">
+    <div class="circle circle1"><span>FREE</span></div>
+    <div class="circle circle2"><span>➤</span></div>
+    </span>
+    </div>
+    </figure>
+        </div>
+
+        <div class="masonry__item big">
+          <figure>
+            <figcaption>#53</figcaption>
+            <div class="content">
+              <h2>Rainy Window</h2>
+            </div>
+            <div class="background" style="background-image: url(https://images.unsplash.com/photo-1567688993206-43c34131b21f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80);"></div>
+          <div class="detail">
+    <span class="icon"></span>
+    <span class="circles">
+    <div class="circle circle1"><span>FREE</span></div>
+    <div class="circle circle2"><span>➤</span></div>
+    </span>
+    </div>
+    </figure>
+        </div>
+
+        <div class="masonry__item big">
+          <figure>
+            <figcaption>#54</figcaption>
+            <div class="content">
+              <h2>Rainy Window</h2>
+            </div>
+            <div class="background" style="background-image: url(https://images.unsplash.com/photo-1548232979-6c557ee14752?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1742&q=80);"></div>
+          <div class="detail">
+    <span class="icon"></span>
+    <span class="circles">
+    <div class="circle circle1"><span>FREE</span></div>
+    <div class="circle circle2"><span>➤</span></div>
+    </span>
+    </div>
+    </figure>
+        </div>
+
+        <div class="masonry__item middle">
+          <figure>
+            <figcaption>#55</figcaption>
+            <div class="content">
+              <h2>Rainy Window</h2>
+            </div>
+            <div class="background" style="background-image: url(https://images.unsplash.com/photo-1520187135890-e8023d253f5c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80);"></div>
+          <div class="detail">
+    <span class="icon"></span>
+    <span class="circles">
+    <div class="circle circle1"><span>FREE</span></div>
+    <div class="circle circle2"><span>➤</span></div>
+    </span>
+    </div>
+    </figure>
+        </div>
+
+        <div class="masonry__item big">
+          <figure>
+            <figcaption>#56</figcaption>
+            <div class="content">
+              <h2>Rainy Window</h2>
+            </div>
+            <div class="background" style="background-image: url(https://images.unsplash.com/photo-1600276871076-49d461d70795?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1744&q=80);"></div>
+          <div class="detail">
+    <span class="icon"></span>
+    <span class="circles">
+    <div class="circle circle1"><span>FREE</span></div>
+    <div class="circle circle2"><span>➤</span></div>
+    </span>
+    </div>
+    </figure>
+        </div>
+
+        <div class="masonry__item small">
+          <figure>
+            <figcaption>#57</figcaption>
+            <div class="content">
+              <h2>Rainy Window</h2>
+            </div>
+            <div class="background" style="background-image: url(https://images.unsplash.com/photo-1499184949561-704bad5f6cd6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80);"></div>
+          <div class="detail">
+    <span class="icon"></span>
+    <span class="circles">
+    <div class="circle circle1"><span>FREE</span></div>
+    <div class="circle circle2"><span>➤</span></div>
+    </span>
+    </div>
+    </figure>
+        </div>
+
+        <div class="masonry__item big">
+          <figure>
+            <figcaption>#58</figcaption>
+            <div class="content">
+              <h2>Rainy Window</h2>
+            </div>
+            <div class="background" style="background-image: url(https://images.unsplash.com/photo-1515725598959-ed796fc88b08?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1160&q=80);"></div>
+          <div class="detail">
+    <span class="icon"></span>
+    <span class="circles">
+    <div class="circle circle1"><span>FREE</span></div>
+    <div class="circle circle2"><span>➤</span></div>
+    </span>
+    </div>
+    </figure>
+        </div>
+
+        <div class="masonry__item middle">
+          <figure>
+            <figcaption>#59</figcaption>
+            <div class="content">
+              <h2>Rainy Window</h2>
+            </div>
+            <div class="background" style="background-image: url(https://images.unsplash.com/photo-1521061887553-5e20fcd813b8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80);"></div>
+          <div class="detail">
+    <span class="icon"></span>
+    <span class="circles">
+    <div class="circle circle1"><span>FREE</span></div>
+    <div class="circle circle2"><span>➤</span></div>
+    </span>
+    </div>
+    </figure>
+        </div>
+        
+        <div class="masonry__item big">
+          <figure>
+            <figcaption>#60</figcaption>
+            <div class="content">
+              <h2>Rainy Window</h2>
+            </div>
+            <div class="background" style="background-image: url(https://images.unsplash.com/photo-1543347969-806b4c8d7da1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1742&q=80);"></div>
+          <div class="detail">
+    <span class="icon"></span>
+    <span class="circles">
+    <div class="circle circle1"><span>FREE</span></div>
+    <div class="circle circle2"><span>➤</span></div>
+    </span>
+    </div>
+    </figure>
+        </div>
+
+        <div class="masonry__item middle">
+          <figure>
+            <figcaption>#61</figcaption>
+            <div class="content">
+              <h2>Rainy Window</h2>
+            </div>
+            <div class="background" style="background-image: url(https://images.unsplash.com/photo-1567688993206-43c34131b21f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80);"></div>
+          <div class="detail">
+    <span class="icon"></span>
+    <span class="circles">
+    <div class="circle circle1"><span>FREE</span></div>
+    <div class="circle circle2"><span>➤</span></div>
+    </span>
+    </div>
+    </figure>
+        </div>
+
+        <div class="masonry__item small">
+          <figure>
+            <figcaption>#62</figcaption>
+            <div class="content">
+              <h2>Rainy Window</h2>
+            </div>
+            <div class="background" style="background-image: url(https://images.unsplash.com/photo-1548232979-6c557ee14752?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1742&q=80);"></div>
+          <div class="detail">
+    <span class="icon"></span>
+    <span class="circles">
+    <div class="circle circle1"><span>FREE</span></div>
+    <div class="circle circle2"><span>➤</span></div>
+    </span>
+    </div>
+    </figure>
+        </div>
+
+        <div class="masonry__item big">
+          <figure>
+            <figcaption>#63</figcaption>
+            <div class="content">
+              <h2>Rainy Window</h2>
+            </div>
+            <div class="background" style="background-image: url(https://images.unsplash.com/photo-1520187135890-e8023d253f5c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80);"></div>
+          <div class="detail">
+    <span class="icon"></span>
+    <span class="circles">
+    <div class="circle circle1"><span>FREE</span></div>
+    <div class="circle circle2"><span>➤</span></div>
+    </span>
+    </div>
+    </figure>
+        </div>
+
+        <div class="masonry__item small">
+          <figure>
+            <figcaption>#64</figcaption>
+            <div class="content">
+              <h2>Rainy Window</h2>
+            </div>
+            <div class="background" style="background-image: url(https://images.unsplash.com/photo-1600276871076-49d461d70795?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1744&q=80);"></div>
+          <div class="detail">
+    <span class="icon"></span>
+    <span class="circles">
+    <div class="circle circle1"><span>FREE</span></div>
+    <div class="circle circle2"><span>➤</span></div>
+    </span>
+    </div>
+    </figure>
+        </div>
+
+        <div class="masonry__item small">
+          <figure>
+            <figcaption>#65</figcaption>
+            <div class="content">
+              <h2>Rainy Window</h2>
+            </div>
+            <div class="background" style="background-image: url(https://images.unsplash.com/photo-1515725598959-ed796fc88b08?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1160&q=80);"></div>
+          <div class="detail">
+    <span class="icon"></span>
+    <span class="circles">
+    <div class="circle circle1"><span>FREE</span></div>
+    <div class="circle circle2"><span>➤</span></div>
+    </span>
+    </div>
+    </figure>
+        </div>
+
+        <div class="masonry__item small">
+          <figure>
+            <figcaption>#66</figcaption>
+            <div class="content">
+              <h2>Rainy Window</h2>
+            </div>
+            <div class="background" style="background-image: url(https://images.unsplash.com/photo-1521061887553-5e20fcd813b8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80);"></div>
+          <div class="detail">
+    <span class="icon"></span>
+    <span class="circles">
+    <div class="circle circle1"><span>FREE</span></div>
+    <div class="circle circle2"><span>➤</span></div>
+    </span>
+    </div>
+    </figure>
+        </div>
+        
+      </div>
+    </section>
+    <!-- wannabedev:demo:grid START -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/ScrollToPlugin.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.0/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/4.2.2/masonry.pkgd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/ScrollMagic.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/plugins/animation.gsap.min.js"></script>
+    <script src="https://unpkg.com/imagesloaded@4.1.4/imagesloaded.pkgd.min.js"></script>
+    <script src="assets/js/gsapClassNames.js"></script>
+    <script src="assets/js/demo.js"></script>
+
+  </body>
+</html>
