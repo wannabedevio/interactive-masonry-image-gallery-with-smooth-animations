@@ -6,7 +6,7 @@ Dynamic demonstration of a masonry image gallery that utilizes the Masonry JavaS
 
 [Article on WANNABEDEV](https://wannabedev.io/tutorials/interactive-masonry-image-gallery-with-smooth-animations/)
 
-[Demo](https://wannabedev.io/_posts/demo/interactive-masonry-image-gallery-with-smooth-animations/)
+[Demo](https://www.wannabedev.io/_posts/interactive-masonry-image-gallery-with-smooth-animations/demo/index.html)
 
 ## Credits
 - [Masonry](https://masonry.desandro.com/) by David DeSandro
